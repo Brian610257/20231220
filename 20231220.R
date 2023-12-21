@@ -9,3 +9,24 @@ plot(Data, col = Color)
 pdf("plot.pdf")      #開啟一個pdf file，路徑為"plot.pdf"
 plot(Data, col = Color) #將圖畫到開啟中的pdf file上去
 dev.off()            #關掉這個pdf file
+
+Result = lm(Weight~Height, data = Data) #linear regression test
+Result
+summary(Result)
+
+plot(Data$Height, Data$Weight, pch = 19)
+abline(Result)
+
+Data=read.table("Example.txt", header = TRUE)
+colnames(Data)  
+colnames(Data)[1]
+
+Result1 = lm(Data[,"Weight"]~Data[,"Height"])
+summary(Result1)
+
+Result1 = cor.test(Data[,"Weight"], Data[,"Height"], method = "pearson") # Pearson correlation
+Result1
+
+Result2 = cor.test(Data[,"Weight"], Data[,"Height"], method = "spearman") # Spearman correlation
+Result2
+
